@@ -1,0 +1,21 @@
+.container {
+  position: relative !important;
+}
+
+.c_items {
+  padding: 0.25rem 0.5rem !important;
+}
+
+.c_icon {
+  margin-top: 8px !important;
+  margin-right: 0px !important;
+}
+
+.c_label {
+  margin: 5px 0px !important;
+}
+.not-selectable {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ and Edge */
+  user-select: none; /* Standard syntax */
+}

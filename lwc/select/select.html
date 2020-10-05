@@ -1,0 +1,59 @@
+<template>
+    <div class="container">
+        <lightning-input name="search" type={inputboxType} autocomplete="off" label={label}
+            placeholder={inputPlaceHolder} read-only={readOnly} disabled={disabled} required={required}
+            variant={variant} onchange={handleFocusAndInput} onfocus={handleFocusAndInput} onclick={handleClick}
+            onblur={handleBlur} onkeyup={arrowNavigationUp} onkeydown={arrowNavigationDown}></lightning-input>
+        <div if:true={hasItems} class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+            role="listbox">
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                <li if:true={allSelectCheckbox} data-value="select-all-options" role="presentation"
+                    onmouseover={clearFocus} class="filtered-item-dropdown">
+                    <div data-value="select-all-options" onclick={handleAllSelectClick}
+                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta c_items"
+                        role="option">
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                            <lightning-button-icon-stateful selected={isAllSelected} size="small"
+                                icon-name={selectCheckboxIcon} alternative-text="Select All">
+                            </lightning-button-icon-stateful>
+                        </span>
+                        <span class="slds-media__body slds-text-body_regular c_label not-selectable">Select All</span>
+                    </div>
+                </li>
+                <template if:true={filteredOptions} for:each={filteredOptions} for:item="option" for:index="index">
+                    <li key={option.value} data-value={option.value} role="presentation" onmouseover={clearFocus}
+                        class="filtered-item-dropdown">
+                        <div data-label={option.label} data-value={option.value} onclick={handleSelectedOption}
+                            class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta c_items"
+                            role="option">
+                            <span class="slds-media__figure slds-listbox__option-icon c_icon">
+                                <lightning-icon if:true={option.selected} icon-name="utility:check"
+                                    alternative-text="checked" size="xx-small">
+                                </lightning-icon>
+                            </span>
+                            <span
+                                class="slds-media__body slds-text-body_regular c_label not-selectable">{option.label}</span>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </div>
+        <!-- No record -->
+        <div if:true={hasNoRecord} class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+            role="listbox">
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                <li role="presentation" class="filtered-item-dropdown">
+                    <div onmouseover={clearFocus} data-value="no-record-found"
+                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta c_items"
+                        role="option">
+                        <span class="slds-media__figure slds-listbox__option-icon c_icon">
+                            <lightning-icon icon-name="utility:search" alternative-text="not found" size="x-small">
+                            </lightning-icon>
+                        </span>
+                        <span class="slds-media__body slds-text-body_regular c_label not-selectable">{noRecordMessage}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
