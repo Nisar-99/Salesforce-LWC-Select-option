@@ -157,13 +157,6 @@ handleSelected(event) {
   ></c-select>
 ```
 
-
-**Output:**
-
-![output]()
-
-
-
  *Thank you.*
 
 
